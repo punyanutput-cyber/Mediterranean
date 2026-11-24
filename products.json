@@ -1,0 +1,42 @@
+[
+  {
+    "id": "dc-fresh-100",
+    "name": "ยาสระผม Fresh ใหญ่ 100ml",
+    "mood": "fresh",
+    "type": "shampoo",
+    "size": "100ml",
+    "price": 199,
+    "image": "images/fresh.jpg",
+    "description": "สระแล้วรู้สึกโปร่งเบา สะอาด พร้อมเริ่มวันด้วยความสดชื่น"
+  },
+  {
+    "id": "dc-sweet-100",
+    "name": "ยาสระผม Sweet ใหญ่ 100ml",
+    "mood": "sweet",
+    "type": "shampoo",
+    "size": "100ml",
+    "price": 199,
+    "image": "images/sweet.jpg",
+    "description": "กลิ่นหวานละมุนที่อยู่กับเส้นผมอย่างอ่อนโยน ให้ความรู้สึกอบอุ่นสบายใจ"
+  },
+  {
+    "id": "dc-confident-100",
+    "name": "ยาสระผม Confident ใหญ่ 100ml",
+    "mood": "confident",
+    "type": "shampoo",
+    "size": "100ml",
+    "price": 199,
+    "image": "images/confident.jpg",
+    "description": "กลิ่นสะอาดนิ่งๆ ที่ช่วยให้คุณดูดีและมั่นใจก่อนออกไปเจอผู้คน"
+  },
+  {
+    "id": "dc-romance-100",
+    "name": "ยาสระผม Romance ใหญ่ 100ml",
+    "mood": "romance",
+    "type": "shampoo",
+    "size": "100ml",
+    "price": 199,
+    "image": "images/romance.jpg",
+    "description": "กลิ่นหวานมีเสน่ห์ที่ติดตรึงใจ ให้ผมของคุณเป็นที่จดจำ"
+  }
+]

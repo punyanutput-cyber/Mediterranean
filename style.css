@@ -1,0 +1,649 @@
+/* ==========================================================================
+   Dame core — theme for all pages
+   Premium, quiet, minimal. Ivory / cream / deep beige with a soft bronze accent.
+   Mood colors appear only as small touches (dots, short lines), never as fills.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Thai:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500&display=swap");
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Base palette */
+  --ivory: #fbf8f2;        /* page background */
+  --cream: #f4eee2;        /* alternate section background */
+  --sand: #e6dcc8;         /* soft dividers, hover tint */
+  --beige-deep: #b9a88a;   /* muted lines, secondary marks */
+  --bronze: #a98b5b;       /* accent (lines, marks) */
+  --bronze-dark: #7a5f33;  /* accent for text, passes contrast on ivory */
+  --ink: #2f2a24;          /* main text, warm dark brown */
+  --ink-soft: #5e564b;     /* secondary text */
+
+  /* Mood touches */
+  --mood-fresh: #3d5a47;      /* dark green */
+  --mood-sweet: #8a6aa6;      /* medium purple */
+  --mood-confident: #3f5064;  /* dark blue-grey */
+  --mood-romance: #c26e6e;    /* soft red */
+
+  /* Fonts */
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", "Times New Roman", serif;
+  --font-serif: "Noto Serif Thai", "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Noto Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --text-hero: clamp(2.5rem, 1.6rem + 4vw, 4.5rem);
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-section: clamp(5rem, 4rem + 6vw, 9rem);
+
+  /* Layout */
+  --container: 70rem;
+  --container-narrow: 40rem;
+  --line: 1px solid rgba(47, 42, 36, 0.28);
+  --line-soft: 1px solid rgba(47, 42, 36, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--text-base);
+  line-height: 1.85; /* Thai needs generous line height for stacked vowels */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--beige-deep);
+  text-underline-offset: 0.3em;
+}
+
+a:hover {
+  text-decoration-color: var(--bronze);
+}
+
+:focus-visible {
+  outline: 1px solid var(--bronze-dark);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+/* h1 for inner pages (the home hero keeps the large h1) */
+.page-title {
+  font-size: var(--text-xl);
+  line-height: 1.4;
+}
+
+p {
+  margin: 0 0 var(--space-2);
+  max-width: 38rem;
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.text-small {
+  font-size: var(--text-sm);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   4. Layout
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section--cream {
+  background: var(--cream);
+}
+
+.section__head {
+  margin-bottom: var(--space-5);
+}
+
+/* Short bronze line under a section title */
+.section__head h2::after,
+.section__head .page-title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin-top: var(--space-3);
+  background: var(--bronze);
+}
+
+.center {
+  text-align: center;
+}
+
+.center p,
+.center .section__head h2::after {
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. Header & footer
+   -------------------------------------------------------------------------- */
+.site-header {
+  padding-block: var(--space-3);
+  border-bottom: var(--line-soft);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.site-footer {
+  padding-block: var(--space-5);
+  border-top: var(--line-soft);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.site-footer p {
+  margin-bottom: var(--space-1);
+  font-size: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: calc(var(--space-section) * 1.1) var(--space-section);
+  text-align: center;
+}
+
+.hero p {
+  margin-inline: auto;
+}
+
+.hero .btn {
+  margin-top: var(--space-4);
+}
+
+/* Home hero: fills the first screen below the header */
+.hero--full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 6rem);
+  min-height: calc(100svh - 6rem);
+  padding-block: var(--space-5);
+}
+
+.hero--full h1 {
+  max-width: 14em;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+/* --------------------------------------------------------------------------
+   7. Buttons — thin lines, no loud fills
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2.5rem;
+  border: var(--line);
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.btn--soft {
+  border-color: var(--beige-deep);
+  color: var(--ink-soft);
+}
+
+.btn--soft:hover {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   8. Mood — color only as a small touch
+   Usage: add data-mood="fresh|sweet|confident|romance" to any element
+   and the --mood custom property is set for its descendants.
+   -------------------------------------------------------------------------- */
+[data-mood="fresh"] {
+  --mood: var(--mood-fresh);
+}
+
+[data-mood="sweet"] {
+  --mood: var(--mood-sweet);
+}
+
+[data-mood="confident"] {
+  --mood: var(--mood-confident);
+}
+
+[data-mood="romance"] {
+  --mood: var(--mood-romance);
+}
+
+/* Small round dot, used before a name or as an icon */
+.mood-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  background: var(--mood, var(--bronze));
+  vertical-align: middle;
+}
+
+/* Short colored line under a mood heading */
+.mood-line {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin-block: var(--space-2);
+  background: var(--mood, var(--bronze));
+}
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.mood-item {
+  padding-top: var(--space-3);
+  border-top: var(--line-soft);
+}
+
+.mood-item h3 {
+  margin-bottom: 0;
+}
+
+.mood-item p {
+  font-size: var(--text-sm);
+}
+
+/* Mood card on the home page: thin border, no fill, links to the filtered list */
+.mood-card {
+  display: block;
+  padding: var(--space-3);
+  border: var(--line-soft);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.25s ease;
+}
+
+.mood-card:hover {
+  border-color: var(--bronze);
+}
+
+.mood-card p {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Products
+   -------------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: var(--line-soft);
+  background: transparent; /* never a bright fill */
+}
+
+.product-card__image {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  object-fit: cover;
+  background: var(--cream); /* placeholder while image loads */
+}
+
+.product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-3);
+}
+
+.product-card__name {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-md);
+}
+
+.product-card__desc {
+  flex: 1;
+  font-size: var(--text-sm);
+}
+
+.product-card__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--bronze-dark);
+}
+
+.product-card .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Mood filter buttons (built by script.js into #filter-bar) */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.filter-bar .btn {
+  width: auto;
+  padding: 0.6rem 1.75rem;
+}
+
+.btn[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+/* --------------------------------------------------------------------------
+   10. Order form
+   -------------------------------------------------------------------------- */
+.form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 0.6rem 0;
+  border: 0;
+  border-bottom: var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.field textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--bronze-dark);
+}
+
+.form__status {
+  min-height: 1.5rem;
+  font-size: var(--text-sm);
+  color: var(--bronze-dark);
+}
+
+.form__status--error {
+  color: var(--mood-romance);
+}
+
+/* --------------------------------------------------------------------------
+   10b. Table (admin)
+   -------------------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 0.9rem 1rem;
+  border-bottom: var(--line-soft);
+  vertical-align: top;
+}
+
+.table th {
+  border-bottom: var(--line);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   11. Utilities
+   -------------------------------------------------------------------------- */
+.divider {
+  height: 0;
+  margin-block: var(--space-4);
+  border: 0;
+  border-top: var(--line-soft);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 62rem) {
+  .mood-grid,
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  .site-header .container {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .nav {
+    gap: var(--space-3);
+  }
+
+  .mood-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .section__head {
+    margin-bottom: var(--space-4);
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .mood-card {
+    transition: none;
+  }
+}
